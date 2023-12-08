@@ -12,7 +12,7 @@ class Post(models.Model):
     like = models.IntegerField(verbose_name='Количество лайков', default=0)
 
     def __str__(self):
-        return f'{self.author}, {self.topic}, {self.body}'
+        return f'{self.author}, {self.topic}'
 
     class Meta:
         verbose_name = 'Пост'
