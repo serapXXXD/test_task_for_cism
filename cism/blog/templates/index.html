@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div>
+    <a href="{%url 'blog:post_create'%}">Написать пост</a>
+</div>
+<br>
+<br>
+<div>
+    {% for post in posts %}
+    <b>Post id:</b> {{post.id}}
+    <br>
+    <b>Post author:</b> {{post.author}}
+    <br>
+    <b>Post title:</b> {{post.topic}}
+    <br>
+    <b>Post body:</b> {{post.body | truncatechars:100 }}
+    <br>
+    <b>Post pub date:</b> {{post.pub_date}}
+    <br>
+    <b>Post likes:</b> {{post.like}}
+    <br>
+    <a href="{% url 'blog:post_detail' post.id%}">читать пост {{post.id}}</a>
+    <br>
+    <br>
+    {% endfor %}
+</div>
+
+
+<div class="pagination">
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+        <a href="?page=1{% if query_params %}&{{ query_params }}{% endif %}">&laquo; в начало</a>
+        <a href="?page={{ page_obj.previous_page_number }}{% if query_params %}&{{ query_params }}{% endif %}">
+                            предыдущая</a>
+        {% endif %}
+
+        <span class="current">
+            страница {{ page_obj.number }} из {{ page_obj.paginator.num_pages }}.
+        </span>
+
+        {% if page_obj.has_next %}
+        <a href="?page={{ page_obj.next_page_number }}{% if query_params %}&{{ query_params }}{% endif %}">следущая</a>
+        <a href="?page={{ page_obj.paginator.num_pages }}{% if query_params %}&{{ query_params }}{% endif %}">
+в конец &raquo;</a>
+        {% endif %}
+    </span>
+
+</div>
+</body>
+</html>

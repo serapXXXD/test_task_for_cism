@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <b>Post id:</b> {{post.id}}
+    <br>
+    <b>Post author:</b> {{post.author}}
+    <br>
+    <b>Post title:</b> {{post.topic}}
+    <br>
+    <b>Post body:</b> {{post.body | truncatechars:100 }}
+    <br>
+    <b>Post pub date:</b> {{post.pub_date}}
+    <br>
+    <b>Post likes:</b> {{post.like}}
+    <br>
+    <a href="{% url 'blog:post_update' post.id %}">Редактировать пост</a> |
+    <a href="{% url 'blog:post_delete' post.id %}">Удалить пост</a>
+</body>
+</html>
