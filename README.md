@@ -1,6 +1,5 @@
 # Тестовое задания для ЦИСМ
-## Установка через Docker
-
+## запуск через Docker
 ### У вас должен быть установлен и запущен Docker
 
 
@@ -23,7 +22,7 @@ https://djecrety.ir/
 
 Формат ключа:
 
-django-insecure-```jvlf+slausy7o2#ak^%yji@p*g7lx(rxy4m23v1%+kwic_6ign```
+```django-insecure-jvlf+slausy7o2#ak^%yji@p*g7lx(rxy4m23v1%+kwic_6ign```
 
 Вам нужно заполнить .env по примеру
 
