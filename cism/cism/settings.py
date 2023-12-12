@@ -23,12 +23,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-r$v&bst5f$v*c2^_d#s#xc!0lrh=1hnip%%galw+h^dnuq2u+6'
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = bool(os.environ.get('DEBUG'))
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS').split(',')
 
 # Application definition
 
@@ -79,16 +79,28 @@ WSGI_APPLICATION = 'cism.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+if DEBUG:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
     }
-}
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': os.environ.get('POSTGRES_ENGINE', default='django.db.backends.postgresql'),
+            'NAME': os.environ.get('POSTGRES_NAME', default='postgres'),
+            'USER': os.environ.get('POSTGRES_USER', default='postgres'),
+            'PASSWORD': os.environ.get('POSTGRES_PASSWORD', default='postgres'),
+            'HOST': os.environ.get('POSTGRES_HOST', default='localhost'),
+            'PORT': os.environ.get('POSTGRES_PORT', default='5432'),
+        }
+    }
 
 REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
-    'PAGE_SIZE': 5,
+    'PAGE_SIZE': int(os.environ.get('PAGE_SIZE_IN_API', default=5)),
 }
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
@@ -123,6 +135,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 STATIC_URL = 'static/'
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field

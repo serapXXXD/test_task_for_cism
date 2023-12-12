@@ -14,10 +14,14 @@
 <br>
 <br>
 
-{% if not is_like %}
-    <button class="btn btn-success"   onclick=window.location.href='{% url "blog:like" post.id %}'>поставить лайк</button>
+{% if user.is_authenticated %}
+    {% if not is_like %}
+        <button class="btn btn-success"   onclick=window.location.href='{% url "blog:like" post.id %}'>поставить лайк</button>
+    {% else %}
+        <button class="btn btn-danger" onclick=window.location.href='{% url "blog:like" post.id %}'>Убрать лайк</button>
+    {% endif %}
 {% else %}
-    <button class="btn btn-danger" onclick=window.location.href='{% url "blog:like" post.id %}'>Убрать лайк</button>
+    <button class="btn btn-success"   onclick=window.location.href='/api/v1/auth/users/'>поставить лайк</button>
 {% endif %}
 <br>
 <br>
