@@ -39,6 +39,8 @@ POSTGRES_HOST=data_base
 POSTGRES_PORT=5432
 
 ALLOWED_HOSTS=127.0.0.1,localhost
+
+PAGE_SIZE_IN_API=5
  ```
 
 Пояснения:
@@ -46,6 +48,8 @@ ALLOWED_HOSTS=127.0.0.1,localhost
 До и после занка "=" пробелов быть не должно!
 
 DEBUG=1 дебаг включен | 0 дебаг выключен
+
+PAGE_SIZE_IN_API=5 количество объектов отоброжаемых на 1 странице в API
 
 В параметре "ALLOWED_HOSTS" укажите список хостов слитно через запятую
  ```
