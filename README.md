@@ -27,7 +27,7 @@ https://djecrety.ir/
 Вам нужно заполнить .env по примеру
 
  ```bash
-SECRET_KEY=django-insecure-jvlf+slausy7o2#ak^%yji@p*g7lx(rxy4m23v1%+kwic_6ign
+SECRET_KEY='django-insecure-jvlf+slausy7o2#ak^%yji@p*g7lx(rxy4m23v1%+kwic_6ign'
 DEBUG=0
 
 POSTGRES_ENGINE='django.db.backends.postgresql_psycopg2' # не менять
