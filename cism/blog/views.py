@@ -1,7 +1,8 @@
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
-from django.shortcuts import get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
+from django.shortcuts import redirect, get_object_or_404
+from .utils import like_post
 from .models import Post, Like
 from .forms import PostForm
 
@@ -19,8 +20,8 @@ class PostDetailView(DetailView):
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
-        post_id = self.request.path.split('/')[-2]
-        context['is_like'] = Like.objects.filter(liked_post_id=post_id).filter(liker_id=self.request.user.id).exists()
+        post = self.get_object()
+        context['is_like'] = Like.objects.filter(liked_post=post).filter(liker=self.request.user).exists()
         return context
 
 
@@ -46,8 +47,6 @@ class PostDeleteView(DeleteView):
 
 @login_required(login_url='/api/v1/auth/users/')
 def post_like(request, pk):
-    like, created = Like.objects.get_or_create(liker=request.user, liked_post=get_object_or_404(Post, pk=pk))
-    if created:
-        return redirect(f'/post/{pk}')
-    like.delete()
-    return redirect(f'/post/{pk}')
+    post = get_object_or_404(Post, id=pk)
+    like_post(post, request.user)
+    return redirect(f'/post/{pk}/')
