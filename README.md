@@ -30,7 +30,7 @@ https://djecrety.ir/
 SECRET_KEY=django-insecure-jvlf+slausy7o2#ak^%yji@p*g7lx(rxy4m23v1%+kwic_6ign
 DEBUG=0
 
-`POSTGRES_ENGINE='django.db.backends.postgresql_psycopg2' # не менять
+POSTGRES_ENGINE='django.db.backends.postgresql_psycopg2' # не менять
 POSTGRES_NAME=cism
 POSTGRES_USER=cism
 POSTGRES_PASSWORD=postgres
@@ -79,7 +79,7 @@ docker exec cism_infra_backend_1 python manage.py migrate
 
 Далее нужно провалиться в образ с бэкэндом
  ```bash
-docker exec -it blog_infra_backend_1 sh
+docker exec -it cism_infra_backend_1 sh
  ```
 
 Примичание !
