@@ -72,9 +72,9 @@ cism_infra_data_base_1
  ```
 Выполните 2 следущие команды
  ```bash
-docker exec blog_infra_backend_1 python manage.py collectstatic --no-input
+docker exec cism_infra_backend_1 python manage.py collectstatic --no-input
 
-docker exec blog_infra_backend_1 python python manage.py migrate
+docker exec cism_infra_backend_1 python python manage.py migrate
  ```
 
 Далее нужно провалиться в образ с бэкэндом
