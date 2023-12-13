@@ -27,12 +27,12 @@ https://djecrety.ir/
 Вам нужно заполнить .env по примеру
 
  ```bash
-SECRET_KEY='django-insecure-jvlf+slausy7o2#ak^%yji@p*g7lx(rxy4m23v1%+kwic_6ign'
+DJANGO_SECRET_KEY='django-insecure-jvlf+slausy7o2#ak^%yji@p*g7lx(rxy4m23v1%+kwic_6ign'
 DEBUG=0
 
 POSTGRES_ENGINE='django.db.backends.postgresql_psycopg2' # не менять
-POSTGRES_NAME=cism
-POSTGRES_USER=cism
+POSTGRES_NAME=picasso
+POSTGRES_USER=picasso
 POSTGRES_PASSWORD=postgres
 POSTGRES_HOST=data_base
 POSTGRES_PORT=5432
