@@ -10,7 +10,7 @@ git clone git@github.com:serapXXXD/test_task_for_cism.git
  ```
 Перейдите в 
  ```bash
-cd cism_infra
+cd test_task_for_cism/cism_infra/
  ```
 Создайте .env файл
  ```bash
@@ -30,12 +30,12 @@ https://djecrety.ir/
 SECRET_KEY=django-insecure-jvlf+slausy7o2#ak^%yji@p*g7lx(rxy4m23v1%+kwic_6ign
 DEBUG=0
 
-POSTGRES_ENGINE='django.db.backends.postgresql_psycopg2' # не менять
-POSTGRES_NAME=cism
-POSTGRES_USER=cism
-POSTGRES_PASSWORD=posgres
+`POSTGRES_ENGINE='django.db.backends.postgresql_psycopg2' # не менять
+POSTGRES_NAME=postgres
+POSTGRES_USER=postgres
+POSTGRES_PASSWORD=postgres
 POSTGRES_HOST=data_base
-POSTGRES_PORT=5432
+POSTGRES_PORT=5432`
 
 ALLOWED_HOSTS=127.0.0.1,localhost
 
@@ -69,6 +69,12 @@ NAMES
 cism_infra_nginx_1
 cism_infra_backend_1
 cism_infra_data_base_1
+ ```
+Выполните 2 следущие команды
+ ```bash
+docker exec blog_infra_backend_1 python manage.py collectstatic --no-input
+
+docker exec blog_infra_backend_1 python python manage.py migrate
  ```
 
 Далее нужно провалиться в образ с бэкэндом
