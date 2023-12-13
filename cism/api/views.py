@@ -7,6 +7,7 @@ from .serializers import PostSerializer
 from blog.models import Post, Like
 from blog.utils import like_post
 
+
 class PostViewSet(ModelViewSet):
     queryset = Post.objects.all()
     serializer_class = PostSerializer
